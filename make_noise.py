@@ -40,7 +40,7 @@ for class_i in range(10):
 random.shuffle(trainIdx)
 x_train, y_train = x_train[trainIdx], y_train[trainIdx]
 
-# build resnext model
+# build vgg model
 num_blocks = 3
 img_input = Input(shape=(32, 32, 3), name='input')
 img_prediction = vgg_model.vgg_model(img_input, num_classes, num_blocks)
@@ -75,7 +75,7 @@ for i in range(3):
     rescaled_noise[:, :, i] = rescaled_noise[:, :, i] * channel_std[i]
 norm2 = np.linalg.norm(rescaled_noise.flatten(), ord=2)
 normInf = np.abs(rescaled_noise.flatten()).max()
-print('norm2: {} %'.format(int(norm2/norm2_mean*100)))
+print('norm2: {:.1f} %'.format(norm2/norm2_mean*100))
 
 x_train_adv = x_train + noise
 x_test_adv = x_test + noise
@@ -84,8 +84,8 @@ preds_train_adv = np.argmax(classifier.predict(x_train_adv), axis=1)
 preds_test_adv = np.argmax(classifier.predict(x_test_adv), axis=1) 
 targeted_success_rate_train = np.sum(preds_train_adv == target) / len(x_train)
 targeted_success_rate_test = np.sum(preds_test_adv == target) / len(x_test) 
-print('targeted_success_rate_train: {} %'.format(int(targeted_success_rate_train*100)))
-print('targeted_success_rate_test: {} %'.format(int(targeted_success_rate_test*100)))
+print('targeted_success_rate_train: {:.1f} %'.format(targeted_success_rate_train*100))
+print('targeted_success_rate_test: {:.1f} %'.format(targeted_success_rate_test*100))
 
 np.save('noise.npy', noise)
 
@@ -98,7 +98,7 @@ for i in range(3):
     noise_rand[:, :, i] = noise_rand[:, :, i] / channel_std[i]
 norm2_rand = np.linalg.norm(rescaled_noise_rand.flatten(), ord=2)
 normInf_rand = np.abs(rescaled_noise_rand.flatten()).max()
-print('norm2_rand: {} %'.format(int(norm2_rand/norm2_mean*100)))
+print('norm2_rand: {:.1f} %'.format(norm2_rand/norm2_mean*100))
 
 x_train_adv_rand = x_train + noise_rand
 x_test_adv_rand = x_test + noise_rand
@@ -107,6 +107,6 @@ preds_train_adv_rand = np.argmax(classifier.predict(x_train_adv_rand), axis=1)
 preds_test_adv_rand = np.argmax(classifier.predict(x_test_adv_rand), axis=1)
 targeted_success_rate_train_rand = np.sum(preds_train_adv_rand == target) / len(x_train)
 targeted_success_rate_test_rand = np.sum(preds_test_adv_rand == target) / len(x_test)
-print('targeted_success_rate_train_rand: {} %'.format(int(targeted_success_rate_train_rand*100)))
-print('targeted_success_rate_test_rand: {} %'.format(int(targeted_success_rate_test_rand*100)))
+print('targeted_success_rate_train_rand: {:.1f} %'.format(targeted_success_rate_train_rand*100))
+print('targeted_success_rate_test_rand: {:.1f} %'.format(targeted_success_rate_test_rand*100))
 

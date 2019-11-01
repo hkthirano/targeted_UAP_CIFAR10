@@ -10,5 +10,13 @@ We used the VGG-20 model for the CIFAR-10 dataset obtained from a GitHub reposit
 
     ```sh
     python make_noise.py
-
+    
+    # === Targeted UAP ===
+    # norm2: 4.8 %
+    # targeted_success_rate_train: 79.4 %
+    # targeted_success_rate_test: 79.0 %
+    # === Random Noise ===
+    # norm2_rand: 4.8 %
+    # targeted_success_rate_train_rand: 9.7 %
+    # targeted_success_rate_test_rand: 9.7 %
     ```
