@@ -58,13 +58,13 @@ adv_crafter = TargetedUniversalPerturbation(
     eps=5.5,
     norm=2)
 
-# make target label
+# set target label
 target = 1
 y_train_adv_tar = np.zeros(y_train.shape)
 for i in range(y_train.shape[0]):
     y_train_adv_tar[i, target] = 1.0
 
-# make noise
+# generate noise
 _ = adv_crafter.generate(x_train, y=y_train_adv_tar)
 noise = adv_crafter.noise[0,:]
 
