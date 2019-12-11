@@ -1,5 +1,5 @@
 # Targeted universal adversarial perturbation
-This repository contains Keras implementation of our simple iterative method for generating a universal adversarial perturbation that causes deep natural networks to classify most input images into a specific class, as described in the following paper:
+This repository contains Keras implementation of our simple iterative method for generating a targeted universal adversarial perturbation (UAP), which causes deep natural networks to classify most input images into a specific class, as described in the following paper:
 
 Hirano H and Takemoto K (2020) **Simple iterative method for generating targeted universal adversarial perturbations.** in Proceedings of 25th International Symposium on Artificial Life and Robotics (AROB 25th 2020), *to appear*. [arXiv:1911.06502](https://arxiv.org/abs/1911.06502)
 
