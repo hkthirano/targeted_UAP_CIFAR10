@@ -32,7 +32,7 @@ y_test = utils.to_categorical(y_test, num_classes)
 
 # randomly selecting 1000 images for each class in 10 classes 
 trainIdx = []
-num_each_class = 1000
+num_each_class = 10
 for class_i in range(10):
     np.random.seed(111)
     idx = np.random.choice( np.where(y_train[:, class_i]==1)[0], num_each_class, replace=False ).tolist()
@@ -67,6 +67,7 @@ for i in range(y_train.shape[0]):
 # generate noise
 _ = adv_crafter.generate(x_train, y=y_train_adv_tar)
 noise = adv_crafter.noise[0,:]
+norm2_ori = np.linalg.norm(noise.flatten(), ord=2)
 
 # targeted UAP result
 print('=== Targeted UAP ===')
@@ -91,7 +92,7 @@ np.save('noise.npy', noise)
 
 # random noise result 
 print('=== Random Noise ===')
-rescaled_noise_rand = random_sphere(nb_points=1,nb_dims=(32*32*3),radius=norm2,norm=2)
+rescaled_noise_rand = random_sphere(nb_points=1,nb_dims=(32*32*3),radius=norm2_ori,norm=2)
 rescaled_noise_rand = rescaled_noise_rand.reshape(32,32,3)
 noise_rand = rescaled_noise_rand.copy()
 for i in range(3):
