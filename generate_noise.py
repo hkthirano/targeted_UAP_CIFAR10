@@ -95,9 +95,9 @@ rescaled_noise_rand = random_sphere(nb_points=1,nb_dims=(32*32*3),radius=norm2,n
 rescaled_noise_rand = rescaled_noise_rand.reshape(32,32,3)
 noise_rand = rescaled_noise_rand.copy()
 for i in range(3):
-    noise_rand[:, :, i] = noise_rand[:, :, i] / channel_std[i]
-norm2_rand = np.linalg.norm(rescaled_noise_rand.flatten(), ord=2)
-normInf_rand = np.abs(rescaled_noise_rand.flatten()).max()
+    noise_rand[:, :, i] = noise_rand[:, :, i] * channel_std[i]
+norm2_rand = np.linalg.norm(noise_rand.flatten(), ord=2)
+normInf_rand = np.abs(noise_rand.flatten()).max()
 print('norm2_rand: {:.1f} %'.format(norm2_rand/norm2_mean*100))
 
 x_train_adv_rand = x_train + noise_rand
