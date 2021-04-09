@@ -26,3 +26,5 @@ In this repository, we used the VGG-20 model for the CIFAR-10 dataset obtained f
     # targeted_success_rate_train_rand: 9.7 %
     # targeted_success_rate_test_rand: 9.7 %
     ```
+
+![img1](cifar10_example.jpg)
